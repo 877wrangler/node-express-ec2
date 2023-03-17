@@ -19,15 +19,15 @@ app.get('/', (req, res) => {
 });
 
 // Define the route for option quotes
-app.get('/stock', async (req, res) => {
+app.get('/stock/:symbol', async (req, res) => {
+  
   const { symbol } = req.params;
-
   // Launch a new browser instance
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
   // Navigate to the option quote page for the specified symbol
-  await page.goto(`https://finance.yahoo.com/quote/WISH230421C00000500`);
+  await page.goto(`https://finance.yahoo.com/quote/${symbol}`);
 
   // Wait for the fin-streamer element to be available
   await page.waitForSelector('fin-streamer');
@@ -40,5 +40,5 @@ app.get('/stock', async (req, res) => {
   await browser.close();
 
   // Return the option quote and type as JSON
-  res.json({ symbol, optionQuote, optionType });
+  res.json({ optionQuote, optionType });
 });
