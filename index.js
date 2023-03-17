@@ -27,7 +27,7 @@ app.get('/:symbol', async (req, res) => {
   const page = await browser.newPage();
 
   // Navigate to the option quote page for the specified symbol
-  await page.goto(`https://finance.yahoo.com/quote/${symbol}`);
+  await page.goto(`https://finance.yahoo.com/quote/WISH230421C00000500`);
 
   // Wait for the fin-streamer element to be available
   await page.waitForSelector('fin-streamer');
