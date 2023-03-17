@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 });
 
 // Define the route for option quotes
-app.get('/stock/:symbol', async (req, res) => {
+app.get('/stock/:symbol', cors(), async (req, res) => {
   
   const { symbol } = req.params;
   // Launch a new browser instance
